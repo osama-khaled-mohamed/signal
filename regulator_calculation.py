@@ -545,7 +545,7 @@ if st.session_state.page == "main":
     with col1:
         st.button("📦 Download file", on_click=lambda: go_to("f"))
     with col2:  
-        st.button("🔄 Open Proteus", on_click=lambda: go_to("proteus"),disable=True)
+        st.button("🔄 Open Proteus", on_click=lambda: go_to("proteus"),disabled=True)
 
 
 
