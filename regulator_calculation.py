@@ -575,6 +575,7 @@ elif st.session_state.page == "f":
             file_name="pro.DSN",
             mime="application/octet-stream"
         )
+    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
 
 
 
