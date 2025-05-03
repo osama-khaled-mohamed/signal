@@ -9,6 +9,8 @@ if "page" not in st.session_state:
 def go_to(page_name):
     st.session_state.page = page_name
 
+
+
 def intro_amplifier():
     st.title("🔊 Introduction to Amplifiers")
     st.markdown("---")
@@ -41,8 +43,8 @@ def intro_amplifier():
     Each type is designed for a specific purpose and has unique characteristics.
     """)
 
-    st.info("In upcoming sections, we’ll dive deeper into the types, classes, and real-world applications of amplifiers.")
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    # st.info("In upcoming sections, we’ll dive deeper into the types, classes, and real-world applications of amplifiers.")
+    # st.button("🔙 Back" ,on_click=lambda:go_to("main"))
 
 
 
@@ -108,8 +110,8 @@ def amplifier_importance():
     - Inductors (used in RF amplifiers)  
     - **Bias resistors**, **coupling capacitors**, and **bypass capacitors**
     """)
-    st.info("In upcoming sections, we’ll dive deeper into the types, classes, and real-world applications of amplifiers.")
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    # st.info("In upcoming sections, we’ll dive deeper into the types, classes, and real-world applications of amplifiers.")
+    # st.button("🔙 Back" ,on_click=lambda:go_to("main"))
 
 
 
@@ -161,7 +163,7 @@ def amplifier_types():
 
 
     st.markdown("---")
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    # st.button("🔙 Back" ,on_click=lambda:go_to("main"))
 
 
 
@@ -214,8 +216,38 @@ def amplifier_characteristics():
     st.markdown("- [Amplifier Gain | All About Circuits](https://www.allaboutcircuits.com/textbook/semiconductors/chpt-1/amplifier-gain/)")
     st.markdown("- [Gain (electronics) - Wikipedia](https://en.wikipedia.org/wiki/Gain_(electronics))")
 
-    st.markdown("---")
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    # st.markdown("---")
+    # st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+
+def References():
+    st.title("📚 References")
+    st.markdown("""
+    ### Key References on Amplifiers:
+    - **Amplifier Gain and Decibels**: [Learn About Electronics](https://www.learnabout-electronics.org/Amplifiers/amplifiers13.php)  
+      Learn about the different methods of calculating amplifier gain and the significance of decibels.
+      
+    - **Frequency Response Analysis of Amplifiers and Filters**: [Electronics Tutorials](https://www.electronics-tutorials.ws/amplifier/frequency-response.html)  
+      Explore the frequency response characteristics of amplifiers and how filters are analyzed.
+      
+    - **Amplifier Gain**: [All About Circuits](https://www.allaboutcircuits.com/textbook/semiconductors/chpt-1/amplifier-gain/)  
+      An introduction to amplifier gain, types of amplifiers, and their applications.
+      
+    - **Gain (electronics)**: [Gain](https://en.wikipedia.org/wiki/Gain_(electronics))  
+      A detailed overview of gain in electronics, including its definitions, uses, and calculations.
+
+    ### Related Concepts and Topics:
+    - **Operational Amplifiers (Op-Amps)**: [Op-Amp Basics](https://www.electronics-tutorials.ws/opamp/op-amp-basics.html)  
+      Learn about operational amplifiers, their configurations, and real-world applications.
+    
+    - **Amplifier Efficiency**: [Amplifier Efficiency in Power Systems](https://www.electronics-tutorials.ws/amplifier/amplifier-efficiency.html)  
+      Understand the concept of efficiency in amplifiers, including power loss and optimization techniques.
+      
+    - **Noise in Amplifiers**: [Noise in Electronic Systems](https://www.electronics-tutorials.ws/filter/noise.html)  
+      A resource on how noise impacts the performance of amplifiers and methods for minimizing noise.
+
+    - **Application of Amplifiers**: [Amplifier Applications](https://www.engineeringchoice.com/amplifier-applications/)  
+      Explore the wide range of applications for amplifiers in communications, audio systems, and control systems.
+    """)
 
 
 def noise():
@@ -373,8 +405,8 @@ def amplifier_applications():
       Potential for use in wearables and internal medical tech.
     """)
 
-    st.markdown("---")  
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    # st.markdown("---")  
+    # st.button("🔙 Back" ,on_click=lambda:go_to("main"))
 
 def funn():
     # Page title
@@ -477,11 +509,23 @@ def regulator_calculation():
         Iadj = 0
         if include_Iadj:
             Iadj = st.number_input("Enter Iadj (A)", min_value=0.0, value=0.00005, step=0.00001)
-
-        
         Vout = Vref * (1 + R2 / R1) + Iadj * R2
-
         st.success(f"🔋 Output Voltage (Vout): {Vout:.2f} V")
+        st.markdown("---")
+        st.markdown("### **Adjustable Resistance **")
+        R1 = st.number_input("Enter R1 (Ω)", min_value=0.01, value=100.0, step=1.0 ,key="R1")
+        Vref = st.number_input("Enter Vref(v)", min_value=0.01, value=3.3, step=1.0 ,key="Vref")
+        Vout = st.number_input("Enter  Vout (V)", min_value=0.01, value=5.0, step=1.0 ,key="Vout")
+        R2 = (Vout / Vref - 1) * R1
+        st.success(f"🔋 Resistance (R2): {R2:.2f} Ω")
+        st.markdown("---")
+        st.markdown("### **Adjustable Voltage **")
+        R1 = 1000.0
+        Vref = st.number_input("Enter Vref(v)", min_value=0.01, value=3.3, step=1.0 ,key="Vre1f")
+        Vout = st.number_input("Enter  Vout (V)", min_value=0.01, value=5.0, step=1.0 ,key="Vo1ut")
+        R2 = (Vout / Vref - 1) * R1
+        st.success(f"🔋 Resistance (R2): {R2:.2f} Ω")
+        st.success(f"🔋 Resistance (R1): 1kΩ")
         st.button("🔙 Back", on_click=lambda: go_to("main"))
     except Exception as e:
         st.error(f"Error in calculation: {e}")
@@ -502,50 +546,91 @@ def show_proteus_page():
             open_proteus_file(file_path)
         else:
             st.error("⚠️ File not found. Please make sure  exists.")
-
+    st.button("🔙 Back", on_click=lambda: go_to("main"))
 
 
 if st.session_state.page == "main":
-    st.title("🎯 Signal Processing App")
-    st.markdown("### Welcome!")
-    st.title(" DR. Mohamed Fouad")
-    st.markdown(
-        "This web application is designed to describe various operational models, providing insights into system performance and behavior. "
-        "Explore the modules to understand how different parameters affect the system."
+    
+
+    # Sidebar menu
+    st.sidebar.title("📚 Topics Menu")
+    topic = st.sidebar.radio(
+        "Select a topic:",
+        (
+            "🏠 Home",
+            "🔄 Introduction to Amplifiers",
+            "📶 Amplifier Importance",
+            "🚀 Amplifier Types",
+            "🛰️ Amplifier Characteristics",
+            "🔄 Noise & Efficiency",
+            "📦 Applications",
+            "🧮 Regulator Calculation",
+            "🔊 Noise & Efficiency (App)",
+            "📥 Download File",
+            
+            "📚 References",
+        )
     )
 
-    st.markdown("### 📶 Choose The Topic:")
-    st.markdown("---")
-    col1, col2 = st.columns(2)
+    # Main header with image
+    st.title("🛰️ Signal Processing App")
+
+    col1, col2 = st.columns([3, 1])
     with col1:
-        st.button("🔄 Introduction to Amplifiers ", on_click=lambda: go_to(intro_amplifier()))
-    with col2:  
-        st.button("📶 Amplifier Importance", on_click=lambda: go_to(amplifier_importance()))
+        st.markdown("## **Prof. Dr. Eng. Mohamed Fouad**")
+        st.markdown("Welcome to the Signal Processing Educational Platform!")
+    with col2:
+        image = Image.open("mohamed_fouad.png")
+        st.image(image)
+
     st.markdown("---")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button("🚀 Amplifier Types", on_click=lambda: go_to(amplifier_types()))
-    with col2:  
-        st.button("🛰️ Amplifier Characteristics", on_click=lambda: go_to(amplifier_characteristics()))
-    st.markdown("---")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button("🔄 Noise & Efficiency", on_click=lambda: go_to(noise()))
-    with col2:  
-        st.button("📦 Applications", on_click=lambda: go_to(amplifier_applications()))
-    st.markdown("---")
-    st.markdown("### 🛎️ Apps")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button("🔄 Regulator Calculation", on_click=lambda: go_to("regulator"))
-    with col2:  
-        st.button("📦 Noise & Efficiency", on_click=lambda: go_to("Noise_Efficiency"))
-    st.markdown("---")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button("📦 Download file", on_click=lambda: go_to("f"))
-    with col2:  
-        st.button("🔄 Open Proteus", on_click=lambda: go_to("proteus"),disabled=True)
+
+    # Display selected content
+    if topic == "🏠 Home":
+        st.markdown("""
+        This web application is designed to describe various operational models of **Amplifiers**,  
+        providing insights into system performance and behavior.  
+        Explore the modules to understand how different parameters affect the system.
+        """)
+
+    elif topic == "🔄 Introduction to Amplifiers":
+        intro_amplifier()  # Call your function or write the content here
+
+    elif topic == "📶 Amplifier Importance":
+        amplifier_importance()
+
+    elif topic == "🚀 Amplifier Types":
+        amplifier_types()
+
+    elif topic == "🛰️ Amplifier Characteristics":
+        amplifier_characteristics()
+
+    elif topic == "🔄 Noise & Efficiency":
+        noise()
+
+    elif topic == "📦 Applications":
+        amplifier_applications()
+
+    elif topic == "🧮 Regulator Calculation":
+        go_to("regulator")
+        st.sidebar.button("go to Regulator Calculation")
+
+    elif topic == "🔊 Noise & Efficiency (App)":
+        go_to("Noise_Efficiency")
+        st.sidebar.button("go to Noise & Efficiency")
+
+    elif topic == "📥 Download File":
+        go_to("f")
+        st.sidebar.button("go to Download")
+
+    elif topic == "🧪 Open Proteus":
+        go_to("proteus")
+        st.sidebar.button("go to Proteus")
+    elif topic == "📚 References":
+        References()
+
+
+    
 
 
 
@@ -559,7 +644,7 @@ elif st.session_state.page == "proteus":
     st.markdown("---")
     st.markdown("### Proteus Simulation")
     show_proteus_page()
-    st.button("🔙 Back", on_click=lambda: go_to("main"))
+    # st.button("🔙 Back", on_click=lambda: go_to("main"))
 elif st.session_state.page == "f":
     st.title("📦 Download File")
     st.markdown("---")
@@ -575,7 +660,7 @@ elif st.session_state.page == "f":
             file_name="pro.DSN",
             mime="application/octet-stream"
         )
-    st.button("🔙 Back" ,on_click=lambda:go_to("main"))
+    st.button("🔙 Back", on_click=lambda: go_to("main"))    
 
 
 
